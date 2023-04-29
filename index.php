@@ -51,7 +51,7 @@
       
       <div class="containerB">
         <img
-            src="imagens/Capa.png" width="100%"
+            src="images/Capa.png" width="100%"
         />
         <p><font face = 'Roboto' </font>
              AGÊNCIA SPLASH: <br> Aqui você realiza seus Sonhos</p>
@@ -152,11 +152,11 @@
         <!-- Contact section-->
         <section id="galeria">
           <h1><b>Galeria</b></h1>
-          <h4>Clique para ver o que você vai viver nos nossos cruzeiros.<br>Alterne entre as imagens com as setas do teclado.<br><br></h4>
-          <a href="imagens/familiabrincando.jpg" data-lightbox="image-1" data-title="Aqui você encontra muita diversão"> <img class="example-image" src="imagens/familiabrincando.jpg" alt="image-1" width="26%" height="5%"/></a>
-          <a href="imagens/piscinacruzeiro.jpg" data-lightbox="image-1" data-title="Piscinas luxuosas em alto mar"> <img class="example-image" src="imagens/piscinacruzeiro.jpg" alt="image-1" width="22%" height="5%"/></a>
-          <a href="imagens/boliche.jpg" data-lightbox="image-1" data-title="Para todos os tipos de aventura"> <img class="example-image" src="imagens/boliche.jpg" alt="image-1" width="22%" height="5%"/></a>
-          <a href="imagens/festa.jpg" data-lightbox="image-1" data-title="Seu sonho começa aqui"> <img class="example-image" src="imagens/festa.jpg" alt="image-1" width="24.5%" height="5%"/></a>
+          <h4>Clique para ver o que você vai viver nos nossos cruzeiros.<br>Alterne entre as images com as setas do teclado.<br><br></h4>
+          <a href="images/familiabrincando.jpg" data-lightbox="image-1" data-title="Aqui você encontra muita diversão"> <img class="example-image" src="images/familiabrincando.jpg" alt="image-1" width="26%" height="5%"/></a>
+          <a href="images/piscinacruzeiro.jpg" data-lightbox="image-1" data-title="Piscinas luxuosas em alto mar"> <img class="example-image" src="images/piscinacruzeiro.jpg" alt="image-1" width="22%" height="5%"/></a>
+          <a href="images/boliche.jpg" data-lightbox="image-1" data-title="Para todos os tipos de aventura"> <img class="example-image" src="images/boliche.jpg" alt="image-1" width="22%" height="5%"/></a>
+          <a href="images/festa.jpg" data-lightbox="image-1" data-title="Seu sonho começa aqui"> <img class="example-image" src="images/festa.jpg" alt="image-1" width="24.5%" height="5%"/></a>
         </section>
 
 
