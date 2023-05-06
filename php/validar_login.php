@@ -49,11 +49,11 @@ try{
                     header('location:index.php');
                 }
                 else{
-                    echo "<p>Seu usuario esta desativado</p>"
+                    echo "<p>Seu usuario esta desativado</p>";
                 }
             }
             else{
-                echo "<p>Cadastro de usuario inconsistente</p>"
+                echo "<p>Cadastro de usuario inconsistente</p>";
             }
         }
         else{
@@ -61,10 +61,10 @@ try{
         }
     }
     else{
-        echo "<p>Metodo inesperado para o endpoint</p>"
+        echo "<p>Metodo inesperado para o endpoint</p>";
     }
 }
 catch{
-    echo "<p>Ocorreu um erro inesperado</p>"
+    echo "<p>Ocorreu um erro inesperado</p>";
 }
 ?>
