@@ -1,0 +1,68 @@
+body{
+    background-color: lavender;
+    color: plum;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+h1{
+    background-color: plum;
+    color: rebeccapurple;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+}
+h3{
+    color:rgb(5, 96, 133);
+    text-align: center;
+    font-weight: bold;
+}
+
+div.scrollmenu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+  }
+  div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+  }
+  div.scrollmenu a:hover {
+    background-color: rgb(29, 118, 201);
+  }
+  h5 {
+      margin-top: 15px;
+      margin-bottom: 25px;
+      text-align: center;
+      border: dimgray solid 2px;
+      border-radius: 5px;
+  }
+.material-symbols-outlined {
+    color:darkmagenta;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 200,
+  'GRAD' 0,
+  'opsz' 48
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 3px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: rgb(243, 243, 200);
+    color:darkslateblue;
+  }

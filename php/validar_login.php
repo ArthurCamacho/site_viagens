@@ -19,11 +19,11 @@ try{
             # Estrutura o select que ira verificar as credencias no banco de dados
             $query = "SELECT *
                         FROM usuarios
-                    WHERE email = ?
-                        AND senha = ?";
+                       WHERE email = ?
+                         AND senha = ?";
 
             # Cria um statement para preparar a query com os parametros necessários
-            $stmt = $conn->preapare($query);
+            $stmt = $conn->prepare($query);
 
             # Seta os parametros necessários
             $stmt->bindParam(1, $email, PDO::PARAM_STR);
@@ -44,9 +44,10 @@ try{
                     session_start();
                     $_SESSION['usuario'] = $linha['usuario'];
                     $_SESSION['email'] = $linha['email'];
+                    $_SESSION['acesso_id'] = $linha['acesso_id'];
 
                     # Redireciona para o inicio após o login
-                    header('location:index.php');
+                    header('location:../index.php');
                 }
                 else{
                     echo "<p>Seu usuario esta desativado</p>";
@@ -64,7 +65,7 @@ try{
         echo "<p>Metodo inesperado para o endpoint</p>";
     }
 }
-catch{
+catch(Exception $e){
     echo "<p>Ocorreu um erro inesperado</p>";
 }
 ?>

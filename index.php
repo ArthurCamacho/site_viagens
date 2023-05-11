@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -42,8 +46,24 @@
         <li><a href="#reservas">Reservas</a></li>
         <li><a href="#galeria">Galeria</a></li>
         <li><a href="#mapa">Mapa</a></li>
+        <?php
+            if(isset($_SESSION['acesso_id'])){
+                if($_SESSION['acesso_id'] == 1){
+                    echo '<li><a href="gerenciar_usuarios.php">Gerenciar clientes</a></li>';
+                }
+            }
+        ?>
         <li style="float:right">
-        <a class="active" href="#contatos">Contato</a></li>
+        <?php
+            echo $_SESSION['email'];
+            if(isset($_SESSION['email'])){
+                echo '<a class="active" href="php/logout.php">SAIR</a>';
+            }
+            else{
+                echo '<a class="active" href="login.php">LOGIN</a>';
+            }
+        ?>
+      </li>
       </ul>
 
 

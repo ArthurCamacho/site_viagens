@@ -1,0 +1,29 @@
+
+
+idPessoa --> FK Pessoa
+tipoAcesso --> 
+idFuncao --> FK Funcoes
+
+
+
+Funcoes
+id
+funcao --> professor (turma), dependente (pessoa/responsável), 
+coordenador (curso/local), administrador (all), 
+usuário (inscricao/visualizar - dependentes)
+
+Permissoes
+idFuncao
+tabela
+inserir
+editar
+excluir
+criar
+listar
+
+Funcao      tabela      inserir editar  excluir     listar
+Professor   Aluno       0       0       0           1
+Professor   Curso       0       0       0           1
+Professor   Locais      0       0       0           1
+
+
