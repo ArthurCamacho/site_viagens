@@ -7,26 +7,26 @@ try{
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         # Vai verificar se as informações necessárias estão presentes na requisição
         if(
-            isset($_POST['email']) &&
+            isset($_POST['cpf']) &&
             isset($_POST['senha'])
         ){
-            # Vai verificar se o email e a senha estão de acordo com o banco
+            # Vai verificar se o cpf e a senha estão de acordo com o banco
 
             # Limpa as variáveis
-            $email = limpar($_POST['email']);
+            $cpf = limpar($_POST['cpf']);
             $senha = limpar($_POST['senha']);
             
             # Estrutura o select que ira verificar as credencias no banco de dados
             $query = "SELECT *
-                        FROM usuarios
-                       WHERE email = ?
+                        FROM pessoas
+                       WHERE cpf = ?
                          AND senha = ?";
 
             # Cria um statement para preparar a query com os parametros necessários
             $stmt = $conn->prepare($query);
 
             # Seta os parametros necessários
-            $stmt->bindParam(1, $email, PDO::PARAM_STR);
+            $stmt->bindParam(1, $cpf, PDO::PARAM_STR);
             $stmt->bindParam(2, $senha, PDO::PARAM_STR);
 
             # Executa a query
@@ -39,12 +39,11 @@ try{
                 $linha = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 # Verifica se o status do usuário é ativo
-                if($linha['status'] == 1){
+                if($linha['statusId'] == 1){
                     # Coloca variáveis que poderão ser úteis futuramente salvas dentro da variavel $_SERVER
                     session_start();
-                    $_SESSION['usuario'] = $linha['usuario'];
-                    $_SESSION['email'] = $linha['email'];
-                    $_SESSION['acesso_id'] = $linha['acesso_id'];
+                    $_SESSION['nome'] = $linha['nome'];
+                    $_SESSION['funcaoId'] = $linha['funcaoId'];
 
                     # Redireciona para o inicio após o login
                     header('location:../index.php');

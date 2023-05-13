@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Maio-2023 às 03:02
+-- Tempo de geração: 13-Maio-2023 às 20:51
 -- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.0.25
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,88 +24,220 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `acessos`
+-- Estrutura da tabela `funcoes`
 --
 
-CREATE TABLE `acessos` (
-  `id_acesso` int(11) NOT NULL,
-  `nivel` varchar(15) NOT NULL
+CREATE TABLE `funcoes` (
+  `idFuncao` int(11) NOT NULL,
+  `funcao` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `acessos`
+-- Extraindo dados da tabela `funcoes`
 --
 
-INSERT INTO `acessos` (`id_acesso`, `nivel`) VALUES
+INSERT INTO `funcoes` (`idFuncao`, `funcao`) VALUES
 (1, 'ADMINISTRADOR'),
 (2, 'CLIENTE');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura da tabela `lugares`
 --
 
-CREATE TABLE `usuarios` (
-  `id_usuario` int(11) NOT NULL,
-  `nome` varchar(150) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `senha` varchar(50) NOT NULL,
+CREATE TABLE `lugares` (
+  `idLugar` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pessoas`
+--
+
+CREATE TABLE `pessoas` (
+  `idPessoa` int(11) NOT NULL,
+  `nome` varchar(80) NOT NULL,
   `cpf` varchar(11) NOT NULL,
-  `status` int(11) NOT NULL,
-  `data_nascimento` date NOT NULL,
-  `acesso_id` int(11) DEFAULT NULL
+  `rua` varchar(50) NOT NULL,
+  `numeroPredio` varchar(11) NOT NULL,
+  `cep` varchar(8) NOT NULL,
+  `bairro` varchar(50) NOT NULL,
+  `cidade` varchar(50) NOT NULL,
+  `estado` varchar(2) NOT NULL,
+  `telefone` varchar(20) NOT NULL,
+  `funcaoId` int(11) NOT NULL,
+  `statusId` int(11) NOT NULL,
+  `senha` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Extraindo dados da tabela `pessoas`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nome`, `email`, `senha`, `cpf`, `status`, `data_nascimento`, `acesso_id`) VALUES
-(1, 'arthur', 'a@a.com', 'a', '37269222886', 1, '2023-05-02', 1);
+INSERT INTO `pessoas` (`idPessoa`, `nome`, `cpf`, `rua`, `numeroPredio`, `cep`, `bairro`, `cidade`, `estado`, `telefone`, `funcaoId`, `statusId`, `senha`) VALUES
+(1, 'Arthur', '37269222886', 'A', '1', '15077190', '1', '1', 'AE', '123456789012', 2, 1, 'a');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pessoasviagens`
+--
+
+CREATE TABLE `pessoasviagens` (
+  `id` int(11) NOT NULL,
+  `pessoaId` int(11) NOT NULL,
+  `viagemId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `status`
+--
+
+CREATE TABLE `status` (
+  `idStatus` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `status`
+--
+
+INSERT INTO `status` (`idStatus`, `status`) VALUES
+(1, 'ATIVO'),
+(2, 'INATIVO'),
+(3, 'CANCELADO');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `viagens`
+--
+
+CREATE TABLE `viagens` (
+  `idViagem` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `origemId` int(11) NOT NULL,
+  `destionId` int(11) NOT NULL,
+  `dataHorarioPartida` datetime NOT NULL,
+  `dataHorarioChegada` datetime NOT NULL,
+  `valor` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `acessos`
+-- Índices para tabela `funcoes`
 --
-ALTER TABLE `acessos`
-  ADD PRIMARY KEY (`id_acesso`);
+ALTER TABLE `funcoes`
+  ADD PRIMARY KEY (`idFuncao`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices para tabela `lugares`
 --
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `fk_acesso_usuario` (`acesso_id`);
+ALTER TABLE `lugares`
+  ADD PRIMARY KEY (`idLugar`);
+
+--
+-- Índices para tabela `pessoas`
+--
+ALTER TABLE `pessoas`
+  ADD PRIMARY KEY (`idPessoa`),
+  ADD KEY `fk_pessoa_status` (`statusId`),
+  ADD KEY `fk_pessoa_funcao` (`funcaoId`);
+
+--
+-- Índices para tabela `pessoasviagens`
+--
+ALTER TABLE `pessoasviagens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_pessoa` (`pessoaId`),
+  ADD KEY `fk_viagem` (`viagemId`);
+
+--
+-- Índices para tabela `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`idStatus`);
+
+--
+-- Índices para tabela `viagens`
+--
+ALTER TABLE `viagens`
+  ADD PRIMARY KEY (`idViagem`),
+  ADD KEY `fk_viagem_origem` (`origemId`),
+  ADD KEY `fk_viagem_destino` (`destionId`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `acessos`
+-- AUTO_INCREMENT de tabela `funcoes`
 --
-ALTER TABLE `acessos`
-  MODIFY `id_acesso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `funcoes`
+  MODIFY `idFuncao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `usuarios`
+-- AUTO_INCREMENT de tabela `lugares`
 --
-ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `lugares`
+  MODIFY `idLugar` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pessoas`
+--
+ALTER TABLE `pessoas`
+  MODIFY `idPessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `pessoasviagens`
+--
+ALTER TABLE `pessoasviagens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `status`
+--
+ALTER TABLE `status`
+  MODIFY `idStatus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `viagens`
+--
+ALTER TABLE `viagens`
+  MODIFY `idViagem` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para despejos de tabelas
 --
 
 --
--- Limitadores para a tabela `usuarios`
+-- Limitadores para a tabela `pessoas`
 --
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `fk_acesso_usuario` FOREIGN KEY (`acesso_id`) REFERENCES `acessos` (`id_acesso`);
+ALTER TABLE `pessoas`
+  ADD CONSTRAINT `fk_pessoa_funcao` FOREIGN KEY (`funcaoId`) REFERENCES `funcoes` (`idFuncao`),
+  ADD CONSTRAINT `fk_pessoa_status` FOREIGN KEY (`statusId`) REFERENCES `status` (`idStatus`);
+
+--
+-- Limitadores para a tabela `pessoasviagens`
+--
+ALTER TABLE `pessoasviagens`
+  ADD CONSTRAINT `fk_pessoa` FOREIGN KEY (`pessoaId`) REFERENCES `pessoas` (`idPessoa`),
+  ADD CONSTRAINT `fk_viagem` FOREIGN KEY (`viagemId`) REFERENCES `viagens` (`idViagem`);
+
+--
+-- Limitadores para a tabela `viagens`
+--
+ALTER TABLE `viagens`
+  ADD CONSTRAINT `fk_viagem_destino` FOREIGN KEY (`destionId`) REFERENCES `lugares` (`idLugar`),
+  ADD CONSTRAINT `fk_viagem_origem` FOREIGN KEY (`origemId`) REFERENCES `lugares` (`idLugar`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

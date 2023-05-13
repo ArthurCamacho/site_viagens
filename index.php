@@ -47,16 +47,15 @@ session_start();
         <li><a href="#galeria">Galeria</a></li>
         <li><a href="#mapa">Mapa</a></li>
         <?php
-            if(isset($_SESSION['acesso_id'])){
-                if($_SESSION['acesso_id'] == 1){
+            if(isset($_SESSION['funcaoId'])){
+                if($_SESSION['funcaoId'] == 1){
                     echo '<li><a href="gerenciar_usuarios.php">Gerenciar clientes</a></li>';
                 }
             }
         ?>
         <li style="float:right">
         <?php
-            echo $_SESSION['email'];
-            if(isset($_SESSION['email'])){
+            if(isset($_SESSION['nome'])){
                 echo '<a class="active" href="php/logout.php">SAIR</a>';
             }
             else{

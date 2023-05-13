@@ -8,10 +8,10 @@
 </head>
 <body>
     <form action="php/validar_login.php" method="POST">
-        <label for="email">Email</label><br>
-        <input type="text" name="email"><br>
+        <label for="cpf">CPF</label><br>
+        <input type="text" name="cpf"><br>
         <label for="senha">Senha</label><br>
-        <input type="text" name="senha"><br>
+        <input type="password" name="senha"><br>
         <input type="submit">
     </form><br>
     <a href="cadastro_usuario.php">Casdastre-se</a>

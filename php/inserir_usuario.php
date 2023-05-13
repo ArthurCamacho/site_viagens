@@ -7,34 +7,55 @@ try{
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         # Vai verificar se as informações necessárias estão presentes na requisição
         if(
-            isset($_POST['email']) &&
-            isset($_POST['email']) &&
-            isset($_POST['nomeCompleto']) &&
-            isset($_POST['dataNascimento']) &&
-            isset($_POST['cpf'])
+            isset($_POST['nome']) &&
+            isset($_POST['cpf']) &&
+            isset($_POST['cep']) &&
+            isset($_POST['rua']) &&
+            isset($_POST['numeroPredio']) &&
+            isset($_POST['bairro']) &&
+            isset($_POST['cidade']) &&
+            isset($_POST['estado']) &&
+            isset($_POST['senha']) &&
+            isset($_POST['telefone'])
         ){
             # Vai verificar se o email e a senha estão de acordo com o banco
 
             # Limpa as variáveis
-            $email = limpar($_POST['email']);
-            $senha = limpar($_POST['senha']);
-            $nome = limpar($_POST['nomeCompleto']);
+            $nome = limpar($_POST['nome']);
             $cpf = limpar($_POST['cpf']);
-            $senha = limpar($_POST['senha']);
-            $dataNascimento = $_POST['dataNascimento'];
+            $cep = limpar($_POST['cep']);
+            $rua = limpar($_POST['rua']);
+            $numeroPredio = limpar($_POST['numeroPredio']);
+            $bairro = $_POST['bairro'];
+            $cidade = $_POST['cidade'];
+            $estado = $_POST['estado'];
+            $senha = $_POST['senha'];
+            $telefone = $_POST['telefone'];
             
             # Estrutura o select que ira verificar as credencias no banco de dados
-            $query = "INSERT INTO usuarios (nome,
-                                            email,
-                                            senha,
+            $query = "INSERT INTO pessoas  (nome,
                                             cpf,
-                                            data_nascimento,
-                                            status)
+                                            rua,
+                                            numeroPredio,
+                                            cep,
+                                            bairro,
+                                            cidade,
+                                            estado,
+                                            telefone,
+                                            senha,
+                                            funcaoId,
+                                            statusId)
                             VALUES ('$nome',
-                                    '$email',
-                                    '$senha',
                                     '$cpf',
-                                    '$dataNascimento',
+                                    '$rua',
+                                    '$numeroPredio',
+                                    '$cep',
+                                    '$bairro',
+                                    '$cidade',
+                                    '$estado',
+                                    '$telefone',
+                                    '$senha',
+                                    2,
                                     1)";
 
             # Executa a query
