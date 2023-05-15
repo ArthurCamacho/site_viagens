@@ -1,6 +1,7 @@
 <?php
 require_once("conexao.php");
 require_once("funcoes.php");
+session_start();
 
 try{
     # Verifica se o metodo da requisição é post
@@ -60,8 +61,14 @@ try{
 
             # Executa a query
             $conn->exec($query);
-
-            echo '<p>Cadastrado com sucesso! <a href="../login.php">Clique aqui</a> para fazer login</p>';
+            
+            if(isset($_SESSION["funcaoId"]) && ($_SESSION["funcaoId"] == 1 || $_SESSION["funcaoId"] == 3)){
+                header("location: ../gerenciar_usuarios.php");
+            }
+            else{
+                header("location: ../login.php");
+            }
+            
         }
         else{
             echo "<p>Formulario de cadastro incompleto</p>";
