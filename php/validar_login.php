@@ -44,6 +44,7 @@ try{
                     session_start();
                     $_SESSION['nome'] = $linha['nome'];
                     $_SESSION['funcaoId'] = $linha['funcaoId'];
+                    $_SESSION['idPessoa'] = $linha['idPessoa'];
 
                     # Redireciona para o inicio após o login
                     header('location:../index.php');

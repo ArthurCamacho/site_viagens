@@ -43,26 +43,27 @@ session_start();
     <ul>
         <li><a href="#home">Início</a></li>
         <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#reservas">Reservas</a></li>
         <li><a href="#galeria">Galeria</a></li>
         <li><a href="#mapa">Mapa</a></li>
         <?php
             if(isset($_SESSION['funcaoId'])){
-                if($_SESSION['funcaoId'] == 1){
+                if($_SESSION['funcaoId'] == 1 || 
+                   $_SESSION['funcaoId'] == 3
+                ){
                     echo '<li><a href="gerenciar_usuarios.php">Gerenciar clientes</a></li>';
                 }
             }
-        ?>
-        <li style="float:right">
-        <?php
+            ?>
+        
+            <?php
             if(isset($_SESSION['nome'])){
-                echo '<a class="active" href="php/logout.php">SAIR</a>';
+                echo '<li><a href="#reservas">Reservas</a></li>';
+                echo '<li style="float:right"><a class="active" href="php/logout.php">SAIR</a></li>';
             }
             else{
-                echo '<a class="active" href="login.php">LOGIN</a>';
+                echo '<li style="float:right"><a class="active" href="login.php">LOGIN</a></li>';
             }
         ?>
-      </li>
       </ul>
 
 
