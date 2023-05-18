@@ -65,7 +65,7 @@ require 'conexao.php';
                     echo "</table>";
     }
     else{
-        header("location: ../index.php");
+        header("location: index.php");
     }
 ?>
 </body>
