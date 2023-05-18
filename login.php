@@ -7,6 +7,10 @@
     <title>Splash | Login</title>
 </head>
 <body>
+    <?php
+    session_start();
+    require "topo.php";
+    ?>
     <form action="validar_login.php" method="POST">
         <label for="cpf">CPF</label><br>
         <input type="text" name="cpf"><br>

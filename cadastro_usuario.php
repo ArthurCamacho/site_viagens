@@ -13,6 +13,8 @@
     ?>
 
     <form action="inserir_usuario.php" method="POST">
+        <input type="hidden" name="funcao" value="2"><br>
+
         <label for="nome">Nome</label><br>
         <input type="text" name="nome" maxlength="80"><br>
 

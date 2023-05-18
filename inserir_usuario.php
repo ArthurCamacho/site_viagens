@@ -56,7 +56,7 @@ try{
                                     '$estado',
                                     '$telefone',
                                     '$senha',
-                                    2,
+                                    {$_POST['funcao']},
                                     1)";
 
             # Executa a query
