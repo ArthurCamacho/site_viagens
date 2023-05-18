@@ -45,9 +45,10 @@ try{
                     $_SESSION['nome'] = $linha['nome'];
                     $_SESSION['funcaoId'] = $linha['funcaoId'];
                     $_SESSION['idPessoa'] = $linha['idPessoa'];
+                    $_SESSION['statusId'] = $linha['statusId'];
 
                     # Redireciona para o inicio após o login
-                    header('location:../index.php');
+                    header('location: index.php');
                 }
                 else{
                     echo "<p>Seu usuario esta desativado</p>";

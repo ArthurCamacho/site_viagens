@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'php/conexao.php';
+require 'conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +14,7 @@ require 'php/conexao.php';
 </head>
 <body>
 <?php
+    require "topo.php";
 
     if(isset($_SESSION['idPessoa']) && ($_SESSION["funcaoId"] == 1 || $_SESSION["funcaoId"] == 3)){
         echo "
@@ -33,24 +34,13 @@ require 'php/conexao.php';
                             <th>Ações</th>
                         </tr>";
                         
-                        $consulta = $conn->query("SELECT p.nome,
-                                                        p.cpf,
-                                                        p.rua,
-                                                        p.numeroPredio,
-                                                        p.cep,
-                                                        p.bairro,
-                                                        p.cidade,
-                                                        p.estado,
-                                                        p.telefone,
-                                                        s.status,
-                                                        p.idPessoa
-                                                    FROM pessoas p, status s
-                                                WHERE p.statusId = s.idStatus
-                                                ORDER BY p.idPessoa,
-                                                        p.nome");
+                        $consulta = $conn->query("SELECT *
+                                                    FROM pessoas
+                                                ORDER BY idPessoa,
+                                                         nome");
 
                         while($linha = $consulta->fetch(PDO::FETCH_ASSOC)){
-                                if($linha["status"] == 2 || $linha["status"] == 3)
+                                if($linha["statusId"] == 2 || $linha["statusId"] == 3)
                                     echo "<tr style='color:red'>";
                                 else
                                     echo "<tr>";
@@ -67,8 +57,8 @@ require 'php/conexao.php';
                                         <td>{$linha['telefone']}</td>
                                         <td>
                                             <a href='editar_usuario.php?id={$linha['idPessoa']}'><i class='fas fa-edit'></i></a>
-                                            <a href='php/desativar_pessoa.php?id={$linha['idPessoa']}'><i class='fas fa-ban'></i></a>
-                                            <a href='php/ativar_pessoa.php?id={$linha['idPessoa']}'><i class='fas fa-check'></i></a>
+                                            <a href='desativar_pessoa.php?id={$linha['idPessoa']}'><i class='fas fa-ban'></i></a>
+                                            <a href='ativar_pessoa.php?id={$linha['idPessoa']}'><i class='fas fa-check'></i></a>
                                         </td>
                                     </tr>";
                         }        
