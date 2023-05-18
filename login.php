@@ -7,7 +7,7 @@
     <title>Splash | Login</title>
 </head>
 <body>
-    <form action="php/validar_login.php" method="POST">
+    <form action="validar_login.php" method="POST">
         <label for="cpf">CPF</label><br>
         <input type="text" name="cpf"><br>
         <label for="senha">Senha</label><br>

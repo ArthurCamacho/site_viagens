@@ -28,6 +28,7 @@ require 'conexao.php';
                             <th>Data de inicio</th>
                             <th>Data de conclusão</th>
                             <th>Valor</th>
+                            <th>Ações</th>
                         </tr>";
                         
                         $consulta = $conn->query("SELECT v.nome as nomeViagem,

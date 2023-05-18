@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Maio-2023 às 20:51
+-- Tempo de geração: 18-Maio-2023 às 20:00
 -- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- versão do PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,7 +38,8 @@ CREATE TABLE `funcoes` (
 
 INSERT INTO `funcoes` (`idFuncao`, `funcao`) VALUES
 (1, 'ADMINISTRADOR'),
-(2, 'CLIENTE');
+(2, 'CLIENTE'),
+(3, 'GESTOR');
 
 -- --------------------------------------------------------
 
@@ -48,7 +49,8 @@ INSERT INTO `funcoes` (`idFuncao`, `funcao`) VALUES
 
 CREATE TABLE `lugares` (
   `idLugar` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
+  `nome` varchar(50) NOT NULL,
+  `statusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -78,7 +80,9 @@ CREATE TABLE `pessoas` (
 --
 
 INSERT INTO `pessoas` (`idPessoa`, `nome`, `cpf`, `rua`, `numeroPredio`, `cep`, `bairro`, `cidade`, `estado`, `telefone`, `funcaoId`, `statusId`, `senha`) VALUES
-(1, 'Arthur', '37269222886', 'A', '1', '15077190', '1', '1', 'AE', '123456789012', 2, 1, 'a');
+(1, 'Arthur', '37269222886', 'A', '1', '15077190', '1', '1', 'AE', '123456789012', 1, 1, 'a'),
+(2, 'Katia', '12345678911', 'rua qualquer', '1578', '15478563', 'bairro qualquer', 'cidade qualquer', 'SP', '12345678925', 2, 1, 'b'),
+(3, 'Sabrina', '98765432100', 'rua', '123', '12354789', 'bairro', 'cidade', 'es', '1235887777', 2, 1, 'a');
 
 -- --------------------------------------------------------
 
@@ -125,7 +129,8 @@ CREATE TABLE `viagens` (
   `destionId` int(11) NOT NULL,
   `dataHorarioPartida` datetime NOT NULL,
   `dataHorarioChegada` datetime NOT NULL,
-  `valor` float NOT NULL
+  `valor` float NOT NULL,
+  `statusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -142,7 +147,8 @@ ALTER TABLE `funcoes`
 -- Índices para tabela `lugares`
 --
 ALTER TABLE `lugares`
-  ADD PRIMARY KEY (`idLugar`);
+  ADD PRIMARY KEY (`idLugar`),
+  ADD KEY `fk_qualquer_coisa` (`statusId`);
 
 --
 -- Índices para tabela `pessoas`
@@ -172,7 +178,8 @@ ALTER TABLE `status`
 ALTER TABLE `viagens`
   ADD PRIMARY KEY (`idViagem`),
   ADD KEY `fk_viagem_origem` (`origemId`),
-  ADD KEY `fk_viagem_destino` (`destionId`);
+  ADD KEY `fk_viagem_destino` (`destionId`),
+  ADD KEY `fk_status` (`statusId`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -182,7 +189,7 @@ ALTER TABLE `viagens`
 -- AUTO_INCREMENT de tabela `funcoes`
 --
 ALTER TABLE `funcoes`
-  MODIFY `idFuncao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idFuncao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `lugares`
@@ -194,7 +201,7 @@ ALTER TABLE `lugares`
 -- AUTO_INCREMENT de tabela `pessoas`
 --
 ALTER TABLE `pessoas`
-  MODIFY `idPessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `pessoasviagens`
@@ -219,6 +226,12 @@ ALTER TABLE `viagens`
 --
 
 --
+-- Limitadores para a tabela `lugares`
+--
+ALTER TABLE `lugares`
+  ADD CONSTRAINT `fk_qualquer_coisa` FOREIGN KEY (`statusId`) REFERENCES `status` (`idStatus`);
+
+--
 -- Limitadores para a tabela `pessoas`
 --
 ALTER TABLE `pessoas`
@@ -236,8 +249,9 @@ ALTER TABLE `pessoasviagens`
 -- Limitadores para a tabela `viagens`
 --
 ALTER TABLE `viagens`
-  ADD CONSTRAINT `fk_viagem_destino` FOREIGN KEY (`destionId`) REFERENCES `lugares` (`idLugar`),
-  ADD CONSTRAINT `fk_viagem_origem` FOREIGN KEY (`origemId`) REFERENCES `lugares` (`idLugar`);
+  ADD CONSTRAINT `fk_destino` FOREIGN KEY (`destionId`) REFERENCES `lugares` (`idLugar`),
+  ADD CONSTRAINT `fk_origem` FOREIGN KEY (`origemId`) REFERENCES `lugares` (`idLugar`),
+  ADD CONSTRAINT `fk_status` FOREIGN KEY (`statusId`) REFERENCES `status` (`idStatus`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

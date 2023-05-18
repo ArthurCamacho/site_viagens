@@ -54,21 +54,6 @@ if(isset($_SESSION["idPessoa"]) && (
 
                         <label for="senha">Senha</label><br>
                         <input type="text" name="senha" maxlength="50" required value="<?php echo $linha['senha']; ?>"><br>
-                        
-                        <?php
-                            if(isset($_SESSION['funcaoId']) && ($_SESSION['funcaoId'] == 1 || $_SESSION['funcaoId'] == 3)){
-                                echo "<label for='funcao'>Função</label><br>
-                                <select name='funcao' >";
-
-                                $consulta = $conn->query("SELECT *
-                                                            FROM funcoes
-                                                        ORDER BY idFuncao");
-                                while($linha = $consulta->fetch(PDO::FETCH_ASSOC)){
-                                    echo "<option value='{$linha['idFuncao']}'>{$linha['funcao']}</option>";
-                                }
-                                echo "</select><br>";
-                            }
-                        ?>
 
                         <input type="submit" value="Cadastrar">
                         <input type="reset" value="Cancelar">

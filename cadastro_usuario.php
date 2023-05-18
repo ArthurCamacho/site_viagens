@@ -7,7 +7,12 @@
     <title>Splash | Cadastrar</title>
 </head>
 <body>
-    <form action="php/inserir_usuario.php" method="POST">
+    <?php
+    session_start();
+    require "topo.php";
+    ?>
+
+    <form action="inserir_usuario.php" method="POST">
         <label for="nome">Nome</label><br>
         <input type="text" name="nome" maxlength="80"><br>
 
