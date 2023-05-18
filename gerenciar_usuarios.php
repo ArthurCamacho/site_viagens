@@ -7,112 +7,16 @@ require 'php/conexao.php';
 <html>
 <head>
     <title>Listagem de Pessoas</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        
-        h3 {
-            margin-top: 20px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .red-row {
-            color: red;
-        }
-        
-        .add-button {
-            margin-bottom: 10px;
-        }
-        
-        .add-button a {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        
-        .add-button a:hover {
-            background-color: #45a049;
-        }
-
-        table {
-        width: 100%;
-        border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th {
-            background-color: #ddd;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        th, td {
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-            margin-right: 10px;
-        }
-
-        a:hover {
-            color: blue;
-        }
-
-        td:last-child {
-            text-align: center;
-        }
-</style>
+    <link rel="stylesheet" href="css/novos_estilos.css">
+    <meta charset='utf-8'>
+    <link rel='stylesheet' type='text/css' href='css/style.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
 </head>
 <body>
 <?php
 
     if(isset($_SESSION['idPessoa']) && ($_SESSION["funcaoId"] == 1 || $_SESSION["funcaoId"] == 3)){
         echo "
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    <meta charset='utf-8'>
-                    <title>Listagem de Pessoas</title>
-                    <link rel='stylesheet' type='text/css' href='css/style.css'>
-                    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
-                </head>
-                <body>
                     <h3>Listagem de Pessoas</h3>
                     <a href='cadastro_usuario.php'>Nova Pessoa</a><br>
                     <table>
@@ -168,9 +72,7 @@ require 'php/conexao.php';
                                         </td>
                                     </tr>";
                         }        
-                    echo "</table>
-                </body>
-            </html>";
+                    echo "</table>";
     }
     else{
         header("location: ../index.php");
