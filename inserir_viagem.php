@@ -27,7 +27,7 @@ try{
 
             
             # Estrutura o select que ira verificar as credencias no banco de dados
-            $query = "INSERT INTO pessoas  (nome,
+            $query = "INSERT INTO viagens  (nome,
                                             origemId,
                                             destionId,
                                             dataHorarioPartida,

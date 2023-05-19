@@ -10,7 +10,7 @@ require 'conexao.php';
     <link rel="stylesheet" href="css/novos_estilos.css">
     <meta charset='utf-8'>
     <link rel='stylesheet' type='text/css' href='css/style.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+    <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'> -->
 </head>
 <body>
 <?php
@@ -36,11 +36,12 @@ require 'conexao.php';
                                                          v.dataHorarioChegada,
                                                          v.valor,
                                                          v.statusId,
+                                                         v.idViagem,
                                                          o.nome as nomePartida,
                                                          d.nome as nomeDestino
                                                     FROM viagens v
                                               INNER JOIN lugares o ON v.origemId = o.idLugar
-                                              INNER JOIN lugares d ON v.origemId = d.idLugar
+                                              INNER JOIN lugares d ON v.destionId = d.idLugar
                                                 ORDER BY v.idViagem,
                                                          v.nome");
 
@@ -50,14 +51,20 @@ require 'conexao.php';
                                 else
                                     echo "<tr>";
 
-                                echo "
+                                echo "  
+                                <th>Nome</th>
+                                <th>Partida</th>
+                                <th>Chegada</th>
+                                <th>Data de inicio</th>
+                                <th>Data de conclusão</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
                                         <td>{$linha['nomeViagem']}</td>
+                                        <td>{$linha['nomePartida']}</td>
+                                        <td>{$linha['nomeDestino']}</td>
                                         <td>{$linha['dataHorarioPartida']}</td>
                                         <td>{$linha['dataHorarioChegada']}</td>
                                         <td>{$linha['valor']}</td>
-                                        <td>{$linha['statusId']}</td>
-                                        <td>{$linha['nomePartida']}</td>
-                                        <td>{$linha['nomeDestino']}</td>
                                         <td>
                                             <a href='editar_viagem.php?id={$linha['idViagem']}'><i class='fas fa-edit'></i></a>
                                             <a href='desativar_viagem.php?id={$linha['idViagem']}'><i class='fas fa-ban'></i></a>
