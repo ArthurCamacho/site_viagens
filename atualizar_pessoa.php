@@ -58,12 +58,8 @@ try{
 
             }
 
-            if(isset($_SESSION["funcaoId"]) && ($_SESSION["funcaoId"] == 1 || $_SESSION["funcaoId"] == 3)){
-                header("location: gerenciar_usuarios.php");
-            }
-            else{
-                header("location: login.php");
-            }
+            header("location: gerenciar_usuarios.php");
+
         }   
         else{
             echo "<p>Formulario de cadastro incompleto</p>";

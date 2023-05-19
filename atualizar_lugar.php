@@ -9,61 +9,24 @@ try{
         # Vai verificar se as informações necessárias estão presentes na requisição
         if(
             isset($_POST['nome']) &&
-            isset($_POST['cpf']) &&
-            isset($_POST['cep']) &&
-            isset($_POST['rua']) &&
-            isset($_POST['numeroPredio']) &&
-            isset($_POST['bairro']) &&
-            isset($_POST['cidade']) &&
-            isset($_POST['estado']) &&
-            isset($_POST['senha']) &&
-            isset($_POST['telefone'])
+            isset($_POST['pais'])
         ){
             # Vai verificar se o email e a senha estão de acordo com o banco
 
             # Limpa as variáveis
             $nome = limpar($_POST['nome']);
-            $cpf = limpar($_POST['cpf']);
-            $cep = limpar($_POST['cep']);
-            $rua = limpar($_POST['rua']);
-            $numeroPredio = limpar($_POST['numeroPredio']);
-            $bairro = $_POST['bairro'];
-            $cidade = $_POST['cidade'];
-            $estado = $_POST['estado'];
-            $senha = $_POST['senha'];
-            $telefone = $_POST['telefone'];
+            $pais = limpar($_POST['pais']);
             
             # Estrutura o select que ira verificar as credencias no banco de dados
-            $query = "UPDATE pessoas 
+            $query = "UPDATE lugares 
                          SET nome ='$nome',
-                             cpf ='$cpf',
-                             rua ='$rua',
-                             numeroPredio ='$numeroPredio',
-                             cep ='$cep',
-                             bairro ='$bairro',
-                             cidade ='$cidade',
-                             estado ='$estado',
-                             telefone ='$telefone',
-                             senha ='$senha'
-                       WHERE idPessoa = {$_POST['id']}";
+                             pais ='$pais'
+                       WHERE idLugar = {$_POST['id']}";
             
             $conn->exec($query);
+
+            header("location: gerenciar_lugares.php");
             
-            if(isset($_POST['funcao'])){
-                $query = "UPDATE pessoas 
-                             SET funcaoId = {$_POST['funcao']}
-                           WHERE idPessoa = {$_POST['id']}";
-
-                $conn->exec($query);
-
-            }
-
-            if(isset($_SESSION["funcaoId"]) && ($_SESSION["funcaoId"] == 1 || $_SESSION["funcaoId"] == 3)){
-                header("location: gerenciar_usuarios.php");
-            }
-            else{
-                header("location: login.php");
-            }
         }   
         else{
             echo "<p>Formulario de cadastro incompleto</p>";
