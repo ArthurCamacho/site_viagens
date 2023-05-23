@@ -24,30 +24,22 @@ try{
             $dataHoraPartida = limpar($_POST['dataHoraPartida']);
             $dataHoraChegada = limpar($_POST['dataHoraChegada']);
             $valor = $_POST['valor'];
-
             
             # Estrutura o select que ira verificar as credencias no banco de dados
-            $query = "INSERT INTO viagens  (nome,
-                                            origemId,
-                                            destinoId,
-                                            dataHoraPartida,
-                                            dataHoraChegada,
-                                            valor,
-                                            statusId)
-                            VALUES ('$nome',
-                                    '$origem',
-                                    '$destino',
-                                    '$dataHoraPartida',
-                                    '$dataHoraChegada',
-                                    '$valor',
-                                    1)";
-
-            # Executa a query
-            $conn->exec($query);
-    
-            header("location: gerenciar_viagens.php");
+            $query = "UPDATE viagens 
+                         SET nome ='$nome',
+                             origemId ='$origem',
+                             destinoId ='$destino',
+                             dataHoraPartida ='$dataHoraPartida',
+                             dataHoraChegada ='$dataHoraChegada',
+                             valor ='$valor'
+                       WHERE idViagem = {$_POST['id']}";
             
-        }
+            $conn->exec($query);
+
+            header("location: gerenciar_viagens.php");
+
+        }   
         else{
             echo "<p>Formulario de cadastro incompleto</p>";
         }

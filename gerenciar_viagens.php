@@ -31,8 +31,8 @@ require 'conexao.php';
                     </tr>";
                         
         $consulta = $conn->query("SELECT v.nome as nomeViagem,
-                                            v.dataHorarioPartida,
-                                            v.dataHorarioChegada,
+                                            v.dataHoraPartida,
+                                            v.dataHoraChegada,
                                             v.valor,
                                             v.statusId,
                                             v.idViagem,
@@ -40,7 +40,7 @@ require 'conexao.php';
                                             d.nome as nomeDestino
                                     FROM viagens v
                                 INNER JOIN lugares o ON v.origemId = o.idLugar
-                                INNER JOIN lugares d ON v.destionId = d.idLugar
+                                INNER JOIN lugares d ON v.destinoId = d.idLugar
                                 ORDER BY v.idViagem,
                                             v.nome");
 
@@ -53,8 +53,8 @@ require 'conexao.php';
             echo "  <td>{$linha['nomeViagem']}</td>
                     <td>{$linha['nomePartida']}</td>
                     <td>{$linha['nomeDestino']}</td>
-                    <td>{$linha['dataHorarioPartida']}</td>
-                    <td>{$linha['dataHorarioChegada']}</td>
+                    <td>{$linha['dataHoraPartida']}</td>
+                    <td>{$linha['dataHoraChegada']}</td>
                     <td>{$linha['valor']}</td>
                     <td>
                         <a href='editar_viagem.php?id={$linha['idViagem']}'><i class='fas fa-edit'></i></a>

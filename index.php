@@ -88,61 +88,6 @@ session_start();
                 </div>
             </div>
         </section>
-        <!-- Services section-->
-        <section class="bg-light" id="reservas">
-            <div class="container px-4">
-                <div class="row gx-4 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2><b>Reservas</b></h2><br><br>
-                        <p class="lead"> Faça sua pré-reserva do cruzeiro que preferir, entraremos em contato com nossas ofertas.</p>
-
-
-                        <form>
-                            <label for="txtnome">Digite seu nome:</label>
-                            <input type="text" name ="txtnome" minlength='10' required><br><br>
-                    
-                            <label for="txtemail">Digite seu e-mail:</label>
-                            <input type="email" name ="txtemail"  minlength="20" maxlenght='100' required><br><br>
-                    
-                            <label for="telefone">Digite seu telefone:</label>
-                            <input type="text" name="telefone" pattern="[0-9]+" title="Utilize apenas números" required><br><br>
-                    
-                            <label for="adultos">Adultos:</label>
-                            <select name="adultos"><br><br>
-
-                            <option value="SO">de 01 a 02</option>
-                            <option>de 02 a 04</option>
-                            <option>de 05 a 06</option>
-                            </select><br><br>
-
-                            <label for="crianças">Crianças:</label>
-                            <select name="crianças"><br><br>
-
-                            <option value="SO">nenhuma</option>
-                            <option>de 01 a 02</option>
-                            <option>de 02 a 04</option>
-                            <option>de 05 a 06</option>                    
-                             </select><br><br>
-                    
-                            <label for="interesses">Você gosta de:</label>
-                            <input type="checkbox" name="opc1">Teatro
-                            <input type="checkbox" name="opc2">Show
-                            <input type="checkbox" name="opc3">Festas
-                            <input type="checkbox" name="opc4">Esportes<br><br>
-                            <label for="modalidade">Modalidade:</label>
-                            <input type="radio" name="modalidade">Suíte Master
-                            <input type="radio" name="modalidade">Suíte Comum
-                            <input type="radio" name="modalidade">Classe Econômica<br><br>    
-                            <input type="submit" value="Enviar">
-                            <input type="reset" value="Limpar">    
-                                       
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
 
         <!-- Contact section-->
         <section id="galeria">
@@ -190,12 +135,15 @@ session_start();
             <!-- Footer-->
             <br>
             <footer class="py-5 bg-dark">
-                <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; <br><br>Alisson Cavalcanti<br>Katia Trevisan<br>Sabrina Gasparelli</p></div>
+                <div class="container px-4">
+                    <p class="m-0 text-center text-white">Copyright &copy; 
+                        <br>
+                        <br>Arthur Camacho
+                        <br>Katia Trevisan
+                        <br>Sabrina Gasparelli
+                    </p>
+                </div>
             </footer>
-
-
-            
-
 
             <script src="js/lightbox-plus-jquery.min.js"></script>
 

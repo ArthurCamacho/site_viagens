@@ -6,7 +6,7 @@ require 'conexao.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Listagem de Pessoas</title>
+    <title>Listagem de Lugares</title>
     <link rel="stylesheet" href="css/novos_estilos.css">
     <meta charset='utf-8'>
     <link rel='stylesheet' type='text/css' href='css/style.css'>

@@ -1,7 +1,8 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!-- Navigation-->
         <ul>
-        <li><a href="index.php">Início</a></li>
+            <li><a href="index.php">Início</a></li>
+            <li><a href="reservar_viagens.php">Reservar viagens</a></li>
         <?php
             if(isset($_SESSION['funcaoId'])){
                 if($_SESSION['funcaoId'] == 1 || 
