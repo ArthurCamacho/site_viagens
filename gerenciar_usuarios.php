@@ -31,7 +31,7 @@ require 'conexao.php';
                             <th>Rua</th>
                             <th>numero do Prédio</th>
                             <th>Telefone</th>
-                            <th>Ações</th>
+                            <th></th>
                         </tr>";
                         
                         $consulta = $conn->query("SELECT *

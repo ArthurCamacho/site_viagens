@@ -24,7 +24,7 @@ require 'conexao.php';
                         <tr>
                             <th>Nome</th>
                             <th>País</th>
-                            <th>Ações</th>
+                            <th></th>
                         </tr>";
                         
                         $consulta = $conn->query("SELECT *
