@@ -2,11 +2,10 @@
         <!-- Navigation-->
         <ul>
             <li><a href="index.php">Início</a></li>
-            <li><a href="reservar_viagens.php">Reservar viagens</a></li>
-        <?php
+            <?php
             if(isset($_SESSION['funcaoId'])){
                 if($_SESSION['funcaoId'] == 1 || 
-                   $_SESSION['funcaoId'] == 3
+                $_SESSION['funcaoId'] == 3
                 ){
                     echo '<li><a href="gerenciar_usuarios.php">Gerenciar clientes</a></li>';
                     echo '<li><a href="gerenciar_viagens.php">Gerenciar viagens</a></li>';
@@ -17,6 +16,7 @@
             
             <?php
             if(isset($_SESSION['idPessoa'])){
+                echo '<li><a href="reservar_viagens.php">Reservar viagens</a></li>';
                 echo '<li style="float:right"><a class="active" href="logout.php">SAIR</a></li>';
             }
             else{

@@ -40,8 +40,8 @@ require 'conexao.php';
                                         FROM viagens v
                                     INNER JOIN lugares o ON v.origemId = o.idLugar
                                     INNER JOIN lugares d ON v.destinoId = d.idLugar
-                                    ORDER BY v.idViagem,
-                                                v.nome");
+                                      ORDER BY v.nome,
+                                               v.idViagem");
 
             while($linha = $consulta->fetch(PDO::FETCH_ASSOC)){
                 if($linha["statusId"] == 2 || $linha["statusId"] == 3)
@@ -55,10 +55,9 @@ require 'conexao.php';
                         <td>{$linha['dataHoraPartida']}</td>
                         <td>{$linha['dataHoraChegada']}</td>
                         <td>{$linha['valor']}</td>
-                        <td>
-                            <a href='reserva_viagem_pessoa.php?id={$linha['idViagem']}'>Reservar viagem</a>
-                        </td>
+                        <td><a href='reserva_viagem_pessoa.php?id={$linha['idViagem']}'>Reservar viagem</a></td>
                     </tr>";
+                
             }                    
         ?>
     </table>
