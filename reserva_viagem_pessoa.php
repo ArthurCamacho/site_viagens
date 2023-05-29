@@ -22,8 +22,16 @@ try{
 
             # Executa a query
             $conn->exec($query);
-            
-            header("location: reservar_viagens.php");
+            ?>
+            <script>
+                // Exibe o pop-up de exemplo
+                alert("Sua viagem foi reservada com sucesso!");
+
+                // Redireciona para outra página após um pequeno atraso (3 segundos)
+                window.location.href = "reservar_viagens.php";
+            </script>
+
+            <?php
             
         }
         else{

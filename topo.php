@@ -10,6 +10,7 @@
                     echo '<li><a href="gerenciar_usuarios.php">Gerenciar clientes</a></li>';
                     echo '<li><a href="gerenciar_viagens.php">Gerenciar viagens</a></li>';
                     echo '<li><a href="gerenciar_lugares.php">Gerenciar lugares</a></li>';
+                    echo '<li><a href="gerenciar_reservas.php">Gerenciar reservas</a></li>';
                 }
             }
             ?>
