@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24-Maio-2023 às 01:25
+-- Tempo de geração: 30-Maio-2023 às 01:40
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.0.25
 
@@ -98,6 +98,33 @@ INSERT INTO `pessoas` (`idPessoa`, `nome`, `cpf`, `rua`, `numeroPredio`, `cep`, 
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `pessoasviagens`
+--
+
+CREATE TABLE `pessoasviagens` (
+  `id` int(11) NOT NULL,
+  `pessoaId` int(11) NOT NULL,
+  `viagemId` int(11) NOT NULL,
+  `statusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `pessoasviagens`
+--
+
+INSERT INTO `pessoasviagens` (`id`, `pessoaId`, `viagemId`, `statusId`) VALUES
+(1, 1, 1, 1),
+(2, 1, 1, 2),
+(3, 1, 1, 1),
+(4, 1, 1, 1),
+(5, 1, 1, 2),
+(6, 1, 1, 2),
+(7, 1, 1, 2),
+(8, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `status`
 --
 
@@ -138,21 +165,6 @@ CREATE TABLE `viagens` (
 
 INSERT INTO `viagens` (`idViagem`, `nome`, `origemId`, `destinoId`, `dataHoraPartida`, `dataHoraChegada`, `valor`, `statusId`) VALUES
 (1, 'Para FATEC!!!', 1, 3, '2023-05-08 21:56:00', '2023-05-12 21:56:00', 13.39, 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pessoasviagens`
---
-
-CREATE TABLE `pessoasviagens` (
-  `id` int(11) NOT NULL,
-  `pessoaId` int(11) NOT NULL,
-  `viagemId` int(11) NOT NULL,
-  `statusId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
 
 --
 -- Índices para tabelas despejadas
@@ -229,7 +241,7 @@ ALTER TABLE `pessoas`
 -- AUTO_INCREMENT de tabela `pessoasviagens`
 --
 ALTER TABLE `pessoasviagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `status`
@@ -265,8 +277,8 @@ ALTER TABLE `pessoas`
 --
 ALTER TABLE `pessoasviagens`
   ADD CONSTRAINT `fk_pessoa` FOREIGN KEY (`pessoaId`) REFERENCES `pessoas` (`idPessoa`),
-  ADD CONSTRAINT `fk_viagem` FOREIGN KEY (`viagemId`) REFERENCES `viagens` (`idViagem`),
-  ADD CONSTRAINT `fk_status` FOREIGN KEY (`statusId`) REFERENCES `status` (`idStatus`);
+  ADD CONSTRAINT `fk_status` FOREIGN KEY (`statusId`) REFERENCES `status` (`idStatus`),
+  ADD CONSTRAINT `fk_viagem` FOREIGN KEY (`viagemId`) REFERENCES `viagens` (`idViagem`);
 
 --
 -- Limitadores para a tabela `viagens`
